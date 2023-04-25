@@ -1,9 +1,11 @@
 
 # Rapport
 
-**Skriv din rapport här!**
-
-_Du kan ta bort all text som finns sedan tidigare_.
+I det här projektet så började jag med att skapa ett andra activity. Sedan skapades
+en knapp i den första activityn som startar den andra activityn med hjälp av intent. 
+Sedan skapades en bundle för att kunna skicka över data till den andra activityn. 
+Därefter lade jag till tre textviews i den andra activityn för att kunna visa de 
+olika strings i bundlen.
 
 ## Följande grundsyn gäller dugga-svar:
 
@@ -16,24 +18,44 @@ _Du kan ta bort all text som finns sedan tidigare_.
 Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
 
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
-    }
-}
+        Button button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Bundle bundle = new Bundle();
+                bundle.putString("NAME", "Chrille");
+                bundle.putString("CITY", "Skovde");
+                bundle.putString("AGE", "25");
+
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+            }
+        });
+        
+        
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        String name = bundle.getString("NAME");
+        String city = bundle.getString("CITY");
+        String age = bundle.getString("AGE");
+        TextView textview = (TextView) findViewById(R.id.textView2);
+        TextView textview2 = (TextView) findViewById(R.id.textView3);
+        TextView textview3 = (TextView) findViewById(R.id.textView5);
+        textview.setText(name);
+        textview2.setText(city);
+        textview3.setText(age);
+        
 ```
 
 Bilder läggs i samma mapp som markdown-filen.
 
 ![](android.png)
+![](Screenshot_20230425_170724.png)
+![](Screenshot_20230425_170732.png)
 
 Läs gärna:
 
