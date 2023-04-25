@@ -17,10 +17,21 @@ public class MainActivity extends AppCompatActivity {
 
         Button button = (Button) findViewById(R.id.button);
 
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, MainActivity2.class));
+
+                Bundle bundle = new Bundle();
+                bundle.putString("NAME", "Chrille");
+                bundle.putString("CITY", "Skovde");
+                bundle.putString("AGE", "25");
+
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+
+                intent.putExtras(bundle);
+                startActivity(intent);
+
             }
         });
     }
